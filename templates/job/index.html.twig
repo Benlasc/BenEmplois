@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emplois{% endblock %}
+
+{% block body %}
+    <h1>Offres d'emplois sur Paris, Bordeaux et Rennes</h1>
+    {{ form_start(form, { 'attr' : { 'class': 'myForm' } }) }}
+        <div>
+            <strong><u>{{ form_row(form.update) }}</u></strong>            
+        </div>
+        <div>
+            <strong><u>Ville(s) :</u></strong>
+            {{ form_row(form.Paris) }}
+            {{ form_row(form.Bordeaux) }}
+            {{ form_row(form.Rennes) }}
+        </div>
+        <div>
+            <strong><u>Type de contrat :</u></strong>
+            {{ form_row(form.CDD) }}
+            {{ form_row(form.CDI) }}
+            {{ form_row(form.interim) }}
+            {{ form_row(form.saisonnier) }}
+        </div>
+        <div>
+            <strong><u>Nature du contrat :</u></strong>
+            {{ form_row(form.travail) }}
+            {{ form_row(form.professionnalisation) }}
+        </div>
+        <button class="btn btn-primary">Envoyer</button>
+    {{ form_end(form) }}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Intitulé</th>
+                <th>Description</th>
+                <th style="white-space: nowrap;">Type de contrat</th>
+                <th>Nature du contrat</th>
+                <th>Ville</th>
+                <th>Entreprise</th>
+                <th>URL</th>
+                <th>Date de création</th>
+                <th>Date d'actualisation</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <td>{{ job.title }}</td>
+                <td>{{ job.description }}</td>
+                <td>{{ job.contractType }}</td>
+                <td>{{ job.contractNature }}</td>
+                <td>{{ job.city }}</td>
+                <td>{{ job.company }}</td>
+                <td><a href="{{ job.url }}">{{ job.url }}</a></td>
+                <td>{{ job.creationDate ? job.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ job.updateDate ? job.updateDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('job_show', {'id': job.id}) }}">Voir</a>
+                  </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucune offre trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

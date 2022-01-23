@@ -26,7 +26,7 @@ class Job
     private $contractNature;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $City;
+    private $city;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $company;
@@ -95,12 +95,12 @@ class Job
 
     public function getCity(): ?string
     {
-        return $this->City;
+        return $this->city;
     }
 
-    public function setCity(string $City): self
+    public function setCity(string $city): self
     {
-        $this->City = $City;
+        $this->city = $city;
 
         return $this;
     }

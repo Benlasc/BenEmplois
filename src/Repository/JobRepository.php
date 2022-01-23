@@ -19,6 +19,30 @@ class JobRepository extends ServiceEntityRepository
         parent::__construct($registry, Job::class);
     }
 
+    public function findWithFilter(array $cities, array $contractTypes, array $contractNatures)
+    {
+        $qb = $this->createQueryBuilder('j');
+
+        if ($cities != false) {
+            $qb->where($qb->expr()->in('j.city', ':cities'))
+                ->setParameter(':cities', $cities);
+        }
+
+        if ($contractTypes != false) {
+            $qb->andWhere($qb->expr()->in('j.contractType', ':contractTypes'))
+                ->setParameter(':contractTypes', $contractTypes);
+        }
+
+        if ($contractNatures != false) {
+            $qb->andWhere($qb->expr()->in('j.contractNature', ':contractNatures'))
+                ->setParameter(':contractNatures', $contractNatures);
+        }
+
+        $qb->orderBy('j.updateDate', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Job[] Returns an array of Job objects
     //  */
