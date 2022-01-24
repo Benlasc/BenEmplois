@@ -35,7 +35,7 @@ class UpdateDatabase
     }
 
     private function getToken()
-    {
+    {       
         $response = $this->client->request('POST', 'https://entreprise.pole-emploi.fr/connexion/oauth2/access_token', [
             'headers' => [],
             'body' => [

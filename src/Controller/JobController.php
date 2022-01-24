@@ -6,7 +6,6 @@ use App\Entity\Job;
 use App\Form\FilterType;
 use App\Repository\JobRepository;
 use App\Services\UpdateDatabase;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
