@@ -1,5 +1,3 @@
-# BileMo
-
 **Projet pédagogique :**  construire une petite application de récupération d’offres d’emploi de Rennes, Bordeaux et Paris à partir de l’API de Pôle Emploi : pole-emploi.io ;
 
 ## Sommaire
